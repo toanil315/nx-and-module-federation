@@ -1,0 +1,10 @@
+{
+  "extends": "nx/presets/npm.json",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "nxCloudAccessToken": "ZTQ5OTcyMzMtY2RkMi00YzNmLWJmYzItOTllNDA4MjlkMzExfHJlYWQtd3JpdGU=",
+  "namedInputs": {
+    "sharedGlobals": [
+      "{workspaceRoot}/.github/workflows/ci.yml"
+    ]
+  }
+}
