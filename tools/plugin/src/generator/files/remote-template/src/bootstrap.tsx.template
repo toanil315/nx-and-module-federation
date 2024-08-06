@@ -1,0 +1,22 @@
+import { createRoot } from "react-dom/client";
+import { RoutingStrategy } from "./app/routes/router-factory";
+import App from "./app/App";
+
+interface MountParams {
+  mountPoint: HTMLElement;
+  initialPathname?: string;
+  routingStrategy?: RoutingStrategy;
+}
+
+const mount = ({
+  mountPoint,
+  initialPathname,
+  routingStrategy = "memory",
+}: MountParams) => {
+  const root = createRoot(mountPoint);
+  root.render(
+    <App initialPathname={initialPathname} routingStrategy={routingStrategy} />
+  );
+};
+
+export { mount };

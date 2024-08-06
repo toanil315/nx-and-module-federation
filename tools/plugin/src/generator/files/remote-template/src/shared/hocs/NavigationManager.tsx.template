@@ -1,0 +1,45 @@
+import { ReactElement, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
+interface NavigationManagerProps {
+  children: ReactElement;
+}
+
+export default function NavigationManager({
+  children,
+}: NavigationManagerProps) {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    function containerNavigationHandler(event: Event) {
+      const pathname = (event as CustomEvent<string>).detail;
+      if (location.pathname === pathname) {
+        return;
+      }
+      navigate(pathname);
+    }
+
+    window.addEventListener(
+      "[container] navigated",
+      containerNavigationHandler
+    );
+
+    return () => {
+      window.removeEventListener(
+        "[container] navigated",
+        containerNavigationHandler
+      );
+    };
+  }, [location]);
+
+  useEffect(() => {
+    window.dispatchEvent(
+      new CustomEvent("[<%= name %>] navigated", {
+        detail: location.pathname + (location.search ?? ""),
+      })
+    );
+  }, [location]);
+
+  return children;
+}

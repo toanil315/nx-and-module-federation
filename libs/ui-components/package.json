@@ -1,0 +1,100 @@
+{
+  "name": "fluentui-common-components",
+  "private": false,
+  "version": "0.0.4",
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build",
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src",
+    "prettier:fix": "prettier --write .",
+    "format": "npm run prettier:fix && npm run lint:fix",
+    "prepare": "husky",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "peerDependencies": {
+    "@fluentui/react-components": "9.54.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.26.0"
+  },
+  "dependencies": {
+    "@fluentui/react-components": "9.54.2",
+    "@fluentui/react-datepicker-compat": "^0.4.41",
+    "@fluentui/react-icons": "^2.0.252",
+    "@hookform/resolvers": "^3.3.4",
+    "axios": "^1.6.8",
+    "i18next": "^22.4.14",
+    "query-string": "^8.1.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-hook-form": "^7.51.0",
+    "react-i18next": "^12.2.0",
+    "react-router-dom": "6.26.0",
+    "yup": "^1.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.7",
+    "@chromatic-com/storybook": "^1.2.23",
+    "@storybook/addon-essentials": "^8.0.1",
+    "@storybook/addon-interactions": "^8.0.1",
+    "@storybook/addon-links": "^8.0.1",
+    "@storybook/addon-onboarding": "^8.0.1",
+    "@storybook/addon-themes": "^8.0.1",
+    "@storybook/blocks": "^8.0.1",
+    "@storybook/react": "^8.0.1",
+    "@storybook/react-vite": "^8.0.1",
+    "@storybook/test": "^8.0.1",
+    "@types/node": "^18.16.9",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
+    "@vitejs/plugin-react": "^4.1.0",
+    "autoprefixer": "^10.4.15",
+    "babel-loader": "^8.3.0",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-xo": "^0.43.1",
+    "eslint-config-xo-typescript": "^0.55.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-storybook": "^0.8.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^2.8.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-preserve-directives": "^0.4.0",
+    "rollup-preserve-directives": "^1.1.1",
+    "storybook": "^8.0.1",
+    "storybook-addon-remix-react-router": "^3.0.0",
+    "typescript": "^4.9.4",
+    "vite": "^4.5.0",
+    "vite-plugin-dts": "4.0.0-beta.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn lint"
+    ]
+  },
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

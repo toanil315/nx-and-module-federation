@@ -1,0 +1,25 @@
+import { defineConfig } from "@rsbuild/core";
+import { pluginReact } from "@rsbuild/plugin-react";
+import { mfConfig } from "./module-federation.config";
+import { ModuleFederationPlugin } from "@module-federation/enhanced/rspack";
+
+export default defineConfig({
+  plugins: [pluginReact()],
+  server: {
+    port: <%= port %>,
+  },
+  dev: {
+    // It is necessary to configure assetPrefix, and in the production build, you need to configure output.assetPrefix
+    assetPrefix: "http://localhost:<%= port %>",
+  },
+  html: {
+    mountId: "<%= name %>-app",
+    title: "<%= name %> App",
+  },
+  tools: {
+    rspack: (config, { appendPlugins }) => {
+      config.output!.uniqueName = "<%= name %>";
+      appendPlugins([new ModuleFederationPlugin(mfConfig)]);
+    },
+  },
+});
