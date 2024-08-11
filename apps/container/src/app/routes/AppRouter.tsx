@@ -1,18 +1,20 @@
-import { REMOTE_ROUTING_PREFIX } from "@/shared/constants/routing";
-import { RoutingUtils } from "@/shared/utils/routing";
-import { lazy } from "react";
+import { REMOTE_ROUTING_PREFIX } from '@/shared/constants/routing';
+import { RoutingUtils } from '@/shared/utils/routing';
+import { loadRemote } from '@module-federation/enhanced/runtime';
+import { Suspense, lazy } from 'react';
 import {
   Navigate,
   RouteObject,
   RouterProvider,
   createBrowserRouter,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-const Remote1Module = lazy(() => import("@/remotes/remote1/Module"));
+const Remote1Module = lazy(() => import('@/remotes/remote1/Module'));
 
 const routeList: RouteObject[] = [
   {
-    path: "/*",
+    path: '/*',
+
     children: [
       {
         index: true,
@@ -22,13 +24,20 @@ const routeList: RouteObject[] = [
         path: RoutingUtils.getPathFromRoutingPrefix(
           REMOTE_ROUTING_PREFIX.REMOTE1
         ),
-        element: <Remote1Module />,
+        element: (
+          <Suspense fallback={<p>Loading remote 1...</p>}>
+            <Remote1Module />
+          </Suspense>
+        ),
+        loader: async () => {
+          return await loadRemote(`${REMOTE_ROUTING_PREFIX.REMOTE1}/Module`);
+        },
       },
     ],
   },
 
   {
-    path: "*",
+    path: '*',
     element: <p>404 NOT FOUND</p>,
   },
 ];
